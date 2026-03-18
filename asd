@@ -240,7 +240,7 @@ function Library:CreateWindow(title)
     local FloatingMin = Instance.new("TextButton")
 FloatingMin.Name = "FloatingMinimize"
 FloatingMin.Size = UDim2.new(0, 70, 0, 24) -- smaller + balanced pill
-FloatingMin.Position = UDim2.new(1, -90, 1, -50) -- better anchored bottom-right
+FloatingMin.Position = UDim2.new(0.5, 0, 0, 10) -- better anchored bottom-right
 FloatingMin.BackgroundColor3 = Library.Charcoal
 FloatingMin.BackgroundTransparency = 0.1
 FloatingMin.BorderSizePixel = 0
