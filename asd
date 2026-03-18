@@ -238,17 +238,22 @@ function Library:CreateWindow(title)
     MinimizeBtn.Parent = ButtonHolder
 
     local FloatingMin = Instance.new("TextButton")
-    FloatingMin.Name = "FloatingMinimize"
-    FloatingMin.Size = UDim2.new(0, 45, 0, 45)
-    FloatingMin.Position = UDim2.new(0.9, 0, 0.9, 0)
-    FloatingMin.BackgroundColor3 = Library.Charcoal
-    FloatingMin.BorderSizePixel = 0
-    FloatingMin.Text = "-"
-    FloatingMin.TextColor3 = Color3.fromRGB(255, 255, 255)
-    FloatingMin.Font = Enum.Font.GothamBold
-    FloatingMin.TextSize = 24
-    FloatingMin.Visible = false
-    FloatingMin.Parent = SteelUI
+FloatingMin.Name = "FloatingMinimize"
+FloatingMin.Size = UDim2.new(0, 90, 0, 45) -- wider than tall (pill shape)
+FloatingMin.Position = UDim2.new(0.9, 0, 0.9, 0)
+FloatingMin.BackgroundColor3 = Library.Charcoal
+FloatingMin.BorderSizePixel = 0
+FloatingMin.Text = "reopen"
+FloatingMin.TextColor3 = Color3.fromRGB(255, 255, 255)
+FloatingMin.Font = Enum.Font.GothamBold
+FloatingMin.TextSize = 24
+FloatingMin.Visible = false
+FloatingMin.Parent = SteelUI
+
+-- Pill effect
+local Corner = Instance.new("UICorner")
+Corner.CornerRadius = UDim.new(0, 22) -- half of height (45 / 2)
+Corner.Parent = FloatingMin
     
     Instance.new("UICorner", FloatingMin).CornerRadius = UDim.new(1, 0)
     local fs = Instance.new("UIStroke", FloatingMin)
