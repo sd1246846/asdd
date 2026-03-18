@@ -221,7 +221,7 @@ function Library:CreateWindow(title)
     Close.Size = UDim2.new(0, 30, 0, 30)
     Close.Position = UDim2.new(1, -30, 0.5, -15)
     Close.BackgroundTransparency = 1
-    Close.Text = "×"
+    Close.Text = "X"
     Close.TextColor3 = Library.TextDark
     Close.Font = Enum.Font.Gotham
     Close.TextSize = 22
@@ -239,21 +239,44 @@ function Library:CreateWindow(title)
 
     local FloatingMin = Instance.new("TextButton")
 FloatingMin.Name = "FloatingMinimize"
-FloatingMin.Size = UDim2.new(0, 90, 0, 15) -- wider than tall (pill shape)
-FloatingMin.Position = UDim2.new(0.9, 0, 0.9, 0)
+FloatingMin.Size = UDim2.new(0, 70, 0, 24) -- smaller + balanced pill
+FloatingMin.Position = UDim2.new(1, -90, 1, -50) -- better anchored bottom-right
 FloatingMin.BackgroundColor3 = Library.Charcoal
+FloatingMin.BackgroundTransparency = 0.1
 FloatingMin.BorderSizePixel = 0
-FloatingMin.Text = "reopen"
-FloatingMin.TextColor3 = Color3.fromRGB(255, 255, 255)
-FloatingMin.Font = Enum.Font.GothamBold
-FloatingMin.TextSize = 24
+FloatingMin.Text = "Reopen"
+FloatingMin.TextColor3 = Color3.fromRGB(235, 235, 235)
+FloatingMin.Font = Enum.Font.GothamMedium
+FloatingMin.TextSize = 14
 FloatingMin.Visible = false
 FloatingMin.Parent = SteelUI
 
--- Pill effect
+-- Perfect pill shape
 local Corner = Instance.new("UICorner")
-Corner.CornerRadius = UDim.new(0, 22) -- half of height (45 / 2)
+Corner.CornerRadius = UDim.new(1, 0) -- full pill
 Corner.Parent = FloatingMin
+
+-- Subtle stroke (makes it look premium)
+local Stroke = Instance.new("UIStroke")
+Stroke.Color = Color3.fromRGB(255, 255, 255)
+Stroke.Transparency = 0.85
+Stroke.Thickness = 1
+Stroke.Parent = FloatingMin
+
+-- Padding so text isn't cramped
+local Padding = Instance.new("UIPadding")
+Padding.PaddingLeft = UDim.new(0, 10)
+Padding.PaddingRight = UDim.new(0, 10)
+Padding.Parent = FloatingMin
+
+-- Smooth hover effect
+FloatingMin.MouseEnter:Connect(function()
+	FloatingMin.BackgroundTransparency = 0
+end)
+
+FloatingMin.MouseLeave:Connect(function()
+	FloatingMin.BackgroundTransparency = 0.1
+end)
     
     Instance.new("UICorner", FloatingMin).CornerRadius = UDim.new(1, 0)
     local fs = Instance.new("UIStroke", FloatingMin)
